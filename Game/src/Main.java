@@ -3,18 +3,21 @@
 // (powered by FernFlower decompiler)
 //
 
+import java.util.Scanner;
+
 public class Main {
     public Main() {
     }
 
     public static void main(String[] args) {
 
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
         int worldWidth = 10;
         int worldHeigth = 5;
-        int playerXCoordinaate = (int) getRandomCoordinate(worldWidth);
-        //int playerXCoordinaate = 3;
-        int playerYCoordinaate = (int) getRandomCoordinate(worldHeigth);
-        char playerobject = 'P';
+
+        player player = new player(worldWidth, worldHeigth);
         int dragonXCoordinaate = (int) getRandomCoordinate(worldWidth);
         int dragonYCoordinaate = (int) getRandomCoordinate(worldHeigth);
         char dragonobject = 'D';
@@ -22,12 +25,34 @@ public class Main {
         int orcYCoordinaate = (int) getRandomCoordinate(worldHeigth);
         char orcobject = 'O';
 
-        for(int y = 0; y < worldHeigth; ++y) {
+        while(!input.equals("end")){
+            player.move(input);
+
+            //if (input.equals("w") ) {
+                //playerYCoordinaate = playerYCoordinaate - 1;
+            //} else if (input.equals("s") ) {
+                //playerYCoordinaate = playerYCoordinaate + 1;
+            //} else if (input.equals("a") ) {
+                //playerXCoordinaate = playerXCoordinaate - 1;
+            //} else if (input.equals("d") ) {
+                //playerXCoordinaate = playerXCoordinaate + 1;
+            //}
+
+            printMap(worldWidth, worldHeigth, player.xCoordinaate, player.yCoordinaate, player.object, dragonXCoordinaate, dragonYCoordinaate, dragonobject, orcXCoordinaate, orcYCoordinaate, orcobject);
             System.out.println();
-            for(int x = 0; x < worldWidth; ++x) {
-                if (y == 0 || y == worldHeigth-1) {
+            input = scanner.nextLine();
+        }
+
+
+    }
+
+    private static void printMap(int worldWidth, int worldHeigth, int playerXCoordinaate, int playerYCoordinaate, char playerobject, int dragonXCoordinaate, int dragonYCoordinaate, char dragonobject, int orcXCoordinaate, int orcYCoordinaate, char orcobject) {
+        for(int y = 0; y < worldHeigth; y++) {
+            System.out.println();
+            for(int x = 0; x < worldWidth; x++) {
+                if (y == 0 || y == worldHeigth -1) {
                     System.out.print("-");
-                }else if (x == 0 || x == worldWidth-1) {
+                }else if (x == 0 || x == worldWidth -1) {
                     System.out.print("|");
                 } else {
                     //parem kl]ps -> refactor -> extract
