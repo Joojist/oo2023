@@ -3,8 +3,8 @@
 // (powered by FernFlower decompiler)
 //
 
-import java.util.Random;
-import java.util.Scanner;
+import java.sql.SQLOutput;
+import java.util.*;
 
 public class Main {
     public Main() {
@@ -23,7 +23,13 @@ public class Main {
         Dragon dragon = new Dragon(world.width, world.height);
         Orc orc = new Orc(world.width, world.height);
 
-        world.printMap(world.width, world.height, player.xCoordinaate, player.yCoordinaate, player.object, dragon.XCoordinaate, dragon.YCoordinaate, dragon.object, orc.XCoordinaate, orc.YCoordinaate, orc.object);
+        Item Sword = new Item(world.width, world.height, 10, 1, "M66k");
+        Item Hammer = new Item(world.width, world.height, 10, 1, "Haamer");
+        Item Boots = new Item(world.width, world.height, 10, 1, "Yeezyd");
+
+        List<Item> items = new ArrayList<>(Arrays.asList(Sword, Hammer, Boots));
+
+        world.printMap(world.width, world.height, player.xCoordinaate, player.yCoordinaate, player.object, dragon.XCoordinaate, dragon.YCoordinaate, dragon.object, orc.XCoordinaate, orc.YCoordinaate, orc.object, items);
         String input = scanner.nextLine();
 
         while(!input.equals("end")){
@@ -39,8 +45,15 @@ public class Main {
                 //playerXCoordinaate = playerXCoordinaate + 1;
             //}
 
-            world.printMap(world.width, world.height, player.xCoordinaate, player.yCoordinaate, player.object, dragon.XCoordinaate, dragon.YCoordinaate, dragon.object, orc.XCoordinaate, orc.YCoordinaate, orc.object);
+            world.printMap(world.width, world.height, player.xCoordinaate, player.yCoordinaate, player.object, dragon.XCoordinaate, dragon.YCoordinaate, dragon.object, orc.XCoordinaate, orc.YCoordinaate, orc.object, items);
             System.out.println();
+            for (Item i : items) {
+                if (i.xCoordinate == player.xCoordinaate && i.yCoordinate == player.yCoordinaate) {
+                    player.item = i;
+                    System.out.println("Korjasid eseme: " + player.item.name);
+                    break;
+                }
+            }
             input = scanner.nextLine();
         }
 

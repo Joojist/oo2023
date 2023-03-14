@@ -4,6 +4,7 @@ public class player {
     char object;
 
     Direction direction;
+    Item item;
 
     public player(int worldWidth, int worldHeight) {
         this.xCoordinaate = (int) getRandomCoordinate(worldWidth);
