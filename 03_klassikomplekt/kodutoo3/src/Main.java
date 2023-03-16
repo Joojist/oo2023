@@ -1,6 +1,12 @@
+
+
 public class Main {
     public static void main(String[] args) {
-        AlkoPood alkopood = new AlkoPood(new VeiniOsakond("Sauvignon Blanc", 0.75, 65789462), 0.6, 13, 7);
-        System.out.println(alkopood.kmVaba(1.2));
+        VeiniOsakond1 vein = new VeiniOsakond1("Sauvignon Blanc", 0.75, 65789462);
+        AlkoPood alkopood = new AlkoPood(vein, 17F, 13, 7);
+
+        vein.suurusemuutmine(0.25);
+
+        System.out.println(alkopood.salvestus());
     }
 }

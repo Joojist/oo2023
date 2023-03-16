@@ -1,22 +1,37 @@
+import java.util.Date;
+import java.util.Scanner;
+
+
 public class AlkoPood {
-    VeiniOsakond osakond;
-    double km;
+    VeiniOsakond1 osakond;
+    float hind;
     int kogus;
     int id;
+    Date ostuhetk;
 
-    public AlkoPood(VeiniOsakond osakond, double km, int kogus, int id) {
+    static Scanner objekt = new Scanner(System.in);
+    public AlkoPood(VeiniOsakond1 osakond, float hind, int kogus, int id) {
         this.osakond = osakond;
-        this.km = km;
+        this.hind = hind;
         this.kogus = kogus;
         this.id = id;
+        this.ostuhetk = new Date();
     }
-    public void salvestus(VeiniOsakond osakond) {
+    public void salvestaosakond(VeiniOsakond1 osakond) {
         this.osakond = osakond;
     }
-    public void kmsuurus(double protsent) {
-        this.km = this.km * kmVaba(protsent);
+    public Date salvestus() {
+        System.out.println("mitu pudelit tahate osta?");
+        int kogus1 = Integer.parseInt(objekt.nextLine());
+        int lopphind = (int) (ost(kogus1) + (kogus1*(kmsuurus())));
+        System.out.println("Teie l]pphind on " + lopphind + " eurot");
+        return this.ostuhetk;
     }
-    public double kmVaba(double protsent) {
-        return this.km = this.km * protsent;
+    private float kmsuurus() {
+        return (float) (0.4F * this.hind);
+    }
+    public double ost(int kogus1) {
+        return (int) (kogus1 * this.hind);
+
     }
 }
