@@ -1,7 +1,7 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         double kiirus1 = 60.0; // esimene kiirus 60 km/h
@@ -14,36 +14,28 @@ public class Main {
         double keskmineKiiruslistist = arvutaKeskmineKiirusListist(kiirused);
         System.out.println("Kogu tee läbimise keskmine kiirus on: " + keskmineKiiruslistist + " km/h");
 
-        String sisseFail = "kiirused.txt"; // sisendfaili nimi
-        String valjaFail = "keskmine_kiirus.txt"; // väljundfaili nimi
-
+        File fail = new File("kiirused.txt");
         try {
-            // Avame sisendfaili
-            BufferedReader lugeja = new BufferedReader(new FileReader(sisseFail));
-
-            // Loeme kiirused massiivi
-            String rida;
-            double[] kiirusedFailis = new double[0];
-            while ((rida = lugeja.readLine()) != null) {
-                kiirusedFailis = lisamine(kiirused, Double.parseDouble(rida));
+            Scanner scanner = new Scanner(fail);
+            double summa = 0;
+            int loendur = 0;
+            while (scanner.hasNextLine()) {
+                String rida = scanner.nextLine();
+                double kiirus = Double.parseDouble(rida);
+                summa += kiirus;
+                loendur++;
             }
-
-            // Arvutame kogu tee keskmise kiiruse
-            double[] keskmineKiirusFailist = arvutaKeskmineKiirusFailist(kiirusedFailis);
-
-            // Salvestame kogu tee keskmise kiiruse väljundfaili
-            FileWriter kirjutaja = new FileWriter(valjaFail);
-            kirjutaja.write("Kogu tee keskmine kiirus: " + keskmineKiirusFailist + " km/h\n");
-            kirjutaja.close();
-
-            // Sulgeme lugeja
-            lugeja.close();
-
-            System.out.println("Kogu tee keskmine kiirus on salvestatud faili " + valjaFail);
-        } catch (IOException e) {
-            System.out.println("Viga failide töötlemisel: " + e.getMessage());
+            scanner.close();
+            double keskmineKiirusFailis = summa / loendur;
+            System.out.println("Kogu teekonna keskmine kiirus: " + keskmineKiirusFailis);
+            salvestaKeskmineKiirusFaili(keskmineKiirusFailis);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("Faili ei leitud!");
+            e.printStackTrace();
         }
     }
+
 
     public static double arvutaKeskmineKiirus(double kiirus1, double kiirus2, double kaugus) {
         return (kiirus1 + kiirus2) / kaugus;
@@ -55,19 +47,16 @@ public class Main {
         }
         return summa / kiirused.length;
     }
-    public static double[] arvutaKeskmineKiirusFailist(double[] kiirusedFailist) {
-        double summa = 0.0;
-        for (int i = 0; i < kiirusedFailist.length; i++) {
-            summa += kiirusedFailist[i];
+    public static void salvestaKeskmineKiirusFaili(double keskmineKiirusFailis) {
+        File fail = new File("keskmine_kiirus.txt");
+        try {
+            PrintWriter writer = new PrintWriter(fail);
+            writer.println(keskmineKiirusFailis);
+            writer.close();
         }
-        return new double[]{summa / kiirusedFailist.length};
-
-    public static double[] lisamine(double[] massiiv, double element) {
-        double[] uusMassiiv = new double[massiiv.length + 1];
-        for (int i = 0; i < massiiv.length; i++) {
-            uusMassiiv[i] = massiiv[i];
+        catch (FileNotFoundException e) {
+            System.out.println("Viga faili kirjutamisel!");
+            e.printStackTrace();
         }
-        uusMassiiv[massiiv.length] = element;
-        return uusMassiiv;
     }
 }
