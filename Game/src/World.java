@@ -24,14 +24,6 @@ public class World {
                 } else {
                     //parem kl]ps -> refactor -> extract
 
-                    for (Item i: items) {
-                        if (i.yCoordinate == y && i.xCoordinate == x) {
-                            //System.out.print("I");
-                            symbol = 'I';
-                            break;
-                        }
-                    }
-
                     if (playerXCoordinaate == x && playerYCoordinaate == y) {
             //            System.out.print(playerobject);
                         symbol = playerobject;
@@ -43,6 +35,11 @@ public class World {
                         symbol = orcobject;
                     }
 
+//                    for (Character c: characters) {
+//                        if (c.xCoordinaate == x && c.yCoordinaate == y) {
+//                            symbol = c.object;
+//                        }
+//                    }
                 }
                 System.out.print(symbol);
                 symbol = ' ';

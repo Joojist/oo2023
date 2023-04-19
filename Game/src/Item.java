@@ -1,4 +1,4 @@
-public class Item {
+public class Item implements worldobject{
     int xCoordinate;
     int yCoordinate;
     int strength;
@@ -13,7 +13,7 @@ public class Item {
         this.name = name;
     }
 
-    private static double getRandomCoordinate(int worldDimension) {
-        return Math.random() * (worldDimension - 2) + 1;
+    public int getRandomCoordinate(int worldDimension) {
+        return (int) (Math.random() * (worldDimension - 2) + 1);
     }
 }

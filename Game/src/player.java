@@ -1,21 +1,11 @@
-public class player {
-    int xCoordinaate;
-    int yCoordinaate;
-    char object;
+public class player extends Character{
 
     Direction direction;
     Item item;
 
     public player(int worldWidth, int worldHeight) {
-        this.xCoordinaate = (int) getRandomCoordinate(worldWidth);
-        this.yCoordinaate = (int) getRandomCoordinate(worldHeight);
-        this.object = 'P';
-        this.direction = Direction.UP;
+        super(worldWidth, worldHeight, 'P');
 
-    }
-
-    private static double getRandomCoordinate(int worldDimension) {
-        return Math.random() * (worldDimension - 2) + 1;
     }
 
     public void move(String input, World world){

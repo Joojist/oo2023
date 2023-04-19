@@ -22,6 +22,7 @@ public class Main {
         player player = new player(world.width, world.height);
         Dragon dragon = new Dragon(world.width, world.height);
         Orc orc = new Orc(world.width, world.height);
+        List<Character> characters = new ArrayList<>(Arrays.asList(player, dragon, orc)) ;
 
         Item Sword = new Item(world.width, world.height, 10, 1, "M66k");
         Item Hammer = new Item(world.width, world.height, 10, 1, "Haamer");
@@ -29,7 +30,7 @@ public class Main {
 
         List<Item> items = new ArrayList<>(Arrays.asList(Sword, Hammer, Boots));
 
-        world.printMap(world.width, world.height, player.xCoordinaate, player.yCoordinaate, player.object, dragon.XCoordinaate, dragon.YCoordinaate, dragon.object, orc.XCoordinaate, orc.YCoordinaate, orc.object, items);
+        world.printMap(world.width, world.height, player.xCoordinaate, player.yCoordinaate, player.object, dragon.xCoordinaate, dragon.yCoordinaate, dragon.object, orc.xCoordinaate, orc.yCoordinaate, orc.object, items);
         String input = scanner.nextLine();
 
         while(!input.equals("end")){
@@ -45,7 +46,7 @@ public class Main {
                 //playerXCoordinaate = playerXCoordinaate + 1;
             //}
 
-            world.printMap(world.width, world.height, player.xCoordinaate, player.yCoordinaate, player.object, dragon.XCoordinaate, dragon.YCoordinaate, dragon.object, orc.XCoordinaate, orc.YCoordinaate, orc.object, items);
+            world.printMap(world.width, world.height, player.xCoordinaate, player.yCoordinaate, player.object, dragon.xCoordinaate, dragon.yCoordinaate, dragon.object, orc.xCoordinaate, orc.yCoordinaate, orc.object, items);
             System.out.println();
             for (Item i : items) {
                 if (i.xCoordinate == player.xCoordinaate && i.yCoordinate == player.yCoordinaate) {
