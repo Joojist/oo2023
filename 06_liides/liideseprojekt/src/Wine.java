@@ -3,14 +3,12 @@ public class Wine {
     private int year;
     private double price;
 
-    // Constructor
     public Wine(String name, int year, double price) {
         this.name = name;
         this.year = year;
         this.price = price;
     }
 
-    // Getter and setter
     public String getName() {
         return name;
     }
