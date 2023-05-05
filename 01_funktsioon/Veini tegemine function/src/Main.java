@@ -23,11 +23,20 @@ public class Main {
         veinipudelitekogusfor((float) 50.72);
         veinipudelitekogusfor((float) 500.7);
 
+        veinikvaliteet(7,9,4);
+        veinikvaliteet(8,4,2);
+        veinikvaliteet(1,3,4);
+
+        veinipudelitehind(10, 9.5);
+        veinipudelitehind(15, 15);
+        veinipudelitehind(20, 12);
+
+
 
 
     }
 
-    private static float veinipudelitekogusfor(float liitrit) {
+    private static void veinipudelitekogusfor(float liitrit) {
         int pudelid = 0;
         while (liitrit >= 0.75){
             liitrit = (float) (liitrit - 0.75);
@@ -35,7 +44,6 @@ public class Main {
 
         }
         System.out.println(pudelid);
-        return liitrit;
     }
 
     private static String veinialkoholiprotsent(double protsent) {
@@ -52,5 +60,17 @@ public class Main {
 
     private static Double veiniPudelid(double pudelitekogus) {
         return (100 * 7)*pudelitekogus;
+    }
+    private static String veinikvaliteet(double happesus, double magusus, double tanniinid) {
+        if (happesus > 5 && magusus > 5 && tanniinid > 5) {
+            return "Suurepärane vein";
+        } else if (happesus > 3 && magusus > 3 && tanniinid > 3) {
+            return "Hea vein";
+        } else {
+            return "Keskmine vein";
+        }
+    }
+    private static Double veinipudelitehind(double pudelitekogus, double hind) {
+        return pudelitekogus * hind;
     }
 }
